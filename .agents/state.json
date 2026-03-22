@@ -1,0 +1,86 @@
+{
+  "current_iteration": "000002",
+  "current_phase": "prototype",
+  "phases": {
+    "define": {
+      "ideation": {
+        "status": "pending",
+        "file": null
+      },
+      "requirement_definition": {
+        "status": "approved",
+        "file": "it_000002_product-requirement-document.md"
+      },
+      "prd_generation": {
+        "status": "completed",
+        "file": "it_000002_PRD.json"
+      }
+    },
+    "prototype": {
+      "prototype_creation": {
+        "status": "pending",
+        "file": null
+      },
+      "prototype_audit": {
+        "status": "pending",
+        "file": null
+      },
+      "prototype_refactor": {
+        "status": "pending",
+        "file": null
+      },
+      "prototype_approval": {
+        "status": "pending",
+        "file": null
+      },
+      "project_context": {
+        "status": "pending_approval",
+        "file": ".agents/PROJECT_CONTEXT.md"
+      },
+      "test_plan": {
+        "status": "pending",
+        "file": null
+      },
+      "tp_generation": {
+        "status": "pending",
+        "file": null
+      },
+      "prototype_build": {
+        "status": "pending",
+        "file": null
+      },
+      "test_execution": {
+        "status": "pending",
+        "file": null
+      },
+      "prototype_approved": false
+    },
+    "refactor": {
+      "evaluation_report": {
+        "status": "pending",
+        "file": null
+      },
+      "refactor_plan": {
+        "status": "pending",
+        "file": null
+      },
+      "refactor_execution": {
+        "status": "pending",
+        "file": null
+      },
+      "changelog": {
+        "status": "pending",
+        "file": null
+      }
+    }
+  },
+  "last_updated": "2026-03-22T01:56:12.389Z",
+  "updated_by": "nvst:create-project-context",
+  "history": [
+    {
+      "iteration": "000001",
+      "archived_at": "2026-03-22T01:23:27.478Z",
+      "archived_path": ".agents/flow/archived/000001"
+    }
+  ]
+}

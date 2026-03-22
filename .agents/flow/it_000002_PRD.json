@@ -1,0 +1,223 @@
+{
+  "goals": [
+    "Provide a ready-to-run Spring Boot 4 project that developers can clone and extend with zero friction.",
+    "Enforce hexagonal architecture (domain, application, infrastructure separation) as a hard structural constraint.",
+    "Organize code by feature using vertical slices so each slice is self-contained.",
+    "Standardize DTO/entity mapping via MapStruct and persistence via Spring Data JPA.",
+    "Serve as the official company-wide backend starter, distributed by the platform team."
+  ],
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Run the project locally with no configuration",
+      "description": "As a backend developer, I want to clone the template and start it immediately using `mvn spring-boot:run` so that I can evaluate and use it without setup overhead.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-001-AC01",
+          "text": "`mvn spring-boot:run` starts the application with no errors."
+        },
+        {
+          "id": "US-001-AC02",
+          "text": "H2 in-memory database is auto-configured with no external database required."
+        },
+        {
+          "id": "US-001-AC03",
+          "text": "Application starts on a default port (e.g., 8080) and is reachable."
+        },
+        {
+          "id": "US-001-AC04",
+          "text": "`mvn clean install` completes successfully with no compilation or test failures."
+        }
+      ]
+    },
+    {
+      "id": "US-002",
+      "title": "Complete CRUD REST API for a sample resource",
+      "description": "As a backend developer, I want the template to include a fully working CRUD REST API for a sample resource (e.g., `Product`) so that I have a concrete, runnable reference to follow when building my own features.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-002-AC01",
+          "text": "`POST /api/sample-entities` creates a new resource and returns `201 Created` with the created DTO."
+        },
+        {
+          "id": "US-002-AC02",
+          "text": "`GET /api/sample-entities/{id}` returns the resource and `200 OK`, or `404 Not Found` if it does not exist."
+        },
+        {
+          "id": "US-002-AC03",
+          "text": "`GET /api/sample-entities` returns all resources with `200 OK`."
+        },
+        {
+          "id": "US-002-AC04",
+          "text": "`PUT /api/sample-entities/{id}` updates the resource and returns `200 OK`."
+        },
+        {
+          "id": "US-002-AC05",
+          "text": "`DELETE /api/sample-entities/{id}` deletes the resource and returns `204 No Content`."
+        },
+        {
+          "id": "US-002-AC06",
+          "text": "All endpoints are verifiable via curl or Postman."
+        },
+        {
+          "id": "US-002-AC07",
+          "text": "H2 database persists data correctly during runtime (data is not lost between requests in the same session)."
+        },
+        {
+          "id": "US-002-AC08",
+          "text": "Visually verified in browser (H2 console or Swagger/similar if included)."
+        }
+      ]
+    },
+    {
+      "id": "US-003",
+      "title": "Hexagonal architecture with clear layer separation",
+      "description": "As a platform team member, I want the project to enforce hexagonal architecture so that the domain layer has no knowledge of infrastructure concerns and the architecture is maintainable and testable.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-003-AC01",
+          "text": "The project has three distinct top-level packages: `domain`, `application`, and `infrastructure`."
+        },
+        {
+          "id": "US-003-AC02",
+          "text": "No class in the `domain` package imports from `infrastructure` or `application`."
+        },
+        {
+          "id": "US-003-AC03",
+          "text": "No class in the `application` package imports from `infrastructure`."
+        },
+        {
+          "id": "US-003-AC04",
+          "text": "Ports (interfaces) are defined in `domain` or `application`; adapters are implemented in `infrastructure`."
+        },
+        {
+          "id": "US-003-AC05",
+          "text": "The structure is validated manually by reviewing package imports."
+        },
+        {
+          "id": "US-003-AC06",
+          "text": "Typecheck / lint passes (`mvn clean install`)."
+        }
+      ]
+    },
+    {
+      "id": "US-004",
+      "title": "Vertical slice structure per feature",
+      "description": "As a backend developer, I want each feature to be organized as a self-contained vertical slice so that I can add or modify a feature without scattering changes across the entire codebase.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-004-AC01",
+          "text": "Each feature (e.g., `product`) has its own directory containing: controller, use case(s), domain model, and repository."
+        },
+        {
+          "id": "US-004-AC02",
+          "text": "Adding a new feature requires creating a new slice directory without modifying other slices."
+        },
+        {
+          "id": "US-004-AC03",
+          "text": "The slice structure is documented in a `README.md` or inline comments explaining where each type of class belongs."
+        },
+        {
+          "id": "US-004-AC04",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    },
+    {
+      "id": "US-005",
+      "title": "DTO/Entity mapping via MapStruct",
+      "description": "As a backend developer, I want all mapping between domain entities and DTOs to be handled by MapStruct so that mapping logic is declarative, type-safe, and not manually written.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-005-AC01",
+          "text": "MapStruct is declared as a Maven dependency."
+        },
+        {
+          "id": "US-005-AC02",
+          "text": "At least one `@Mapper`-annotated interface exists for `SampleEntity`."
+        },
+        {
+          "id": "US-005-AC03",
+          "text": "No manual field-by-field mapping exists in service or controller classes."
+        },
+        {
+          "id": "US-005-AC04",
+          "text": "Mapper is generated at compile time (verifiable via `mvn clean install`)."
+        },
+        {
+          "id": "US-005-AC05",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    },
+    {
+      "id": "US-006",
+      "title": "Input validation with proper HTTP error responses",
+      "description": "As a backend developer, I want input validation to be enforced on request DTOs so that invalid data is rejected early with clear, consistent error responses.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-006-AC01",
+          "text": "Request DTOs use Bean Validation annotations (e.g., `@NotNull`, `@NotBlank`, `@Size`)."
+        },
+        {
+          "id": "US-006-AC02",
+          "text": "`POST` and `PUT` requests with missing or invalid fields return `400 Bad Request`."
+        },
+        {
+          "id": "US-006-AC03",
+          "text": "Error response body includes a human-readable message indicating which fields failed validation."
+        },
+        {
+          "id": "US-006-AC04",
+          "text": "`200`/`201` responses are not returned for invalid inputs."
+        },
+        {
+          "id": "US-006-AC05",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    }
+  ],
+  "functionalRequirements": [
+    {
+      "id": "FR-1",
+      "description": "** The project must use Java 21 and Spring Boot 4."
+    },
+    {
+      "id": "FR-2",
+      "description": "** Build tool must be Maven; no Gradle alternative is required for this MVP."
+    },
+    {
+      "id": "FR-3",
+      "description": "** Persistence layer must use Spring Data JPA with H2 in-memory database; no external database is required."
+    },
+    {
+      "id": "FR-4",
+      "description": "** DTO/entity mapping must use MapStruct exclusively; no manual mapping or other mapping libraries."
+    },
+    {
+      "id": "FR-5",
+      "description": "** The application must expose REST endpoints following standard HTTP semantics (correct status codes per operation)."
+    },
+    {
+      "id": "FR-6",
+      "description": "** Input validation must use Jakarta Bean Validation (integrated with Spring Boot); validation errors must return `400 Bad Request`."
+    },
+    {
+      "id": "FR-10",
+      "description": "** A global exception handler (`@ControllerAdvice`) must be included to produce consistent, structured error response bodies for all validation and not-found errors."
+    },
+    {
+      "id": "FR-7",
+      "description": "** The `domain` package must not import any class from `infrastructure` (enforced by code review or architecture test)."
+    },
+    {
+      "id": "FR-8",
+      "description": "** Each feature must reside in its own vertical slice directory containing all relevant layers."
+    },
+    {
+      "id": "FR-9",
+      "description": "** No external services or databases beyond H2 are required to run the template."
+    }
+  ]
+}
