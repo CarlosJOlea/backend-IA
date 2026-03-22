@@ -1,1 +1,15 @@
 /home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/TemplateApplication.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/application/SampleEntityNotFoundException.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/application/SampleEntityRepository.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/application/SampleEntityService.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/domain/SampleEntity.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/persistence/SampleEntityJpaEntity.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/persistence/SampleEntityJpaRepository.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/persistence/SampleEntityPersistenceAdapter.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/persistence/SampleEntityPersistenceMapper.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/web/SampleEntityController.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/web/SampleEntityRequest.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/web/SampleEntityResponse.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/web/SampleEntityWebMapper.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/shared/ErrorResponse.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/shared/GlobalExceptionHandler.java
