@@ -76,7 +76,7 @@
       "acceptanceCriteria": [
         {
           "id": "US-003-AC01",
-          "text": "The project has three distinct top-level packages: `domain`, `application`, and `infrastructure`."
+          "text": "Each feature slice has three sub-packages: `domain`, `application`, and `infrastructure`, nested within the feature directory (e.g., `sampleentity/domain`, `sampleentity/application`, `sampleentity/infrastructure`)."
         },
         {
           "id": "US-003-AC02",
@@ -181,7 +181,7 @@
   "functionalRequirements": [
     {
       "id": "FR-1",
-      "description": "** The project must use Java 21 and Spring Boot 4."
+      "description": "** The project must use Java 21 and Spring Boot 3.x (latest stable)."
     },
     {
       "id": "FR-2",
