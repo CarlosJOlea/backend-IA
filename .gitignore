@@ -1,0 +1,64 @@
+# ========================
+# Build (Maven)
+# ========================
+target/
+*.log
+
+# ========================
+# IDEs
+# ========================
+# IntelliJ
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# ========================
+# OS files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Env / secrets
+# ========================
+.env
+*.env
+application-local.properties
+
+# ========================
+# Java
+# ========================
+*.class
+*.jar
+*.war
+*.ear
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+
+# ========================
+# Temporary files
+# ========================
+tmp/
+temp/
+
+# ========================
+# Test output
+# ========================
+surefire-reports/
+failsafe-reports/
+
+# ========================
+# NVST artifacts 
+# .agents/
+# docs/nvst-flow/
