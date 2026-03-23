@@ -2,6 +2,7 @@ package com.example.template.shared;
 
 import com.example.template.sampleentity.application.SampleEntityNotFoundException;
 import com.example.template.user.application.EmailAlreadyRegisteredException;
+import com.example.template.user.application.InvalidCredentialsException;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -12,6 +13,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+  @ExceptionHandler(InvalidCredentialsException.class)
+  @ResponseStatus(HttpStatus.UNAUTHORIZED)
+  public ErrorResponse handleUnauthorized(InvalidCredentialsException ex) {
+    return ErrorResponse.of(HttpStatus.UNAUTHORIZED.value(), ex.getMessage());
+  }
 
   @ExceptionHandler(SampleEntityNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
