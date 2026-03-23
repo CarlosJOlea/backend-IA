@@ -42,3 +42,23 @@ spring-boot-starter-test is declared but no test classes exist. Adding at least 
 The progress file marks US-003 through US-006 as pending (attempt_count=0) despite the code fully implementing all four user stories. The progress tracking artifact should be updated to reflect the actual implementation state.
 
 ---
+
+## From iteration 000003
+
+### Missing Refresh Token and Logout endpoints
+
+POST /auth/refresh and POST /auth/logout are not implemented in the API.
+
+---
+
+### Missing invalidated flag in RefreshToken
+
+The RefreshToken entity lacks an invalidated flag, which is required for secure logout and token rotation (FR-8).
+
+---
+
+### Incomplete Spring Security Integration
+
+Spring Security is not fully configured (missing starter-security and filter chain) to protect endpoints and validate JWTs automatically (FR-5, FR-10).
+
+---

@@ -13,3 +13,15 @@
 /home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/sampleentity/infrastructure/web/SampleEntityWebMapper.java
 /home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/shared/ErrorResponse.java
 /home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/shared/GlobalExceptionHandler.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/application/EmailAlreadyRegisteredException.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/application/UserRepository.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/application/UserService.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/domain/User.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/persistence/UserJpaEntity.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/persistence/UserJpaRepository.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/persistence/UserPersistenceAdapter.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/persistence/UserPersistenceMapper.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/web/RegisterRequest.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/web/UserController.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/web/UserResponse.java
+/home/carlos/Desktop/IA/nvst-prueba/src/main/java/com/example/template/user/infrastructure/web/UserWebMapper.java
