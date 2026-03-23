@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-21T20:08:33-0600",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.10 (JetBrains s.r.o.)"
+    date = "2026-03-23T15:33:44-0600",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.7 (Microsoft)"
 )
 @Component
 public class SampleEntityPersistenceMapperImpl implements SampleEntityPersistenceMapper {
