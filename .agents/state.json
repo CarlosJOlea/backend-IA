@@ -8,12 +8,12 @@
         "file": null
       },
       "requirement_definition": {
-        "status": "in_progress",
+        "status": "approved",
         "file": "it_000003_product-requirement-document.md"
       },
       "prd_generation": {
-        "status": "pending",
-        "file": null
+        "status": "completed",
+        "file": "it_000003_PRD.json"
       }
     },
     "prototype": {
@@ -74,7 +74,7 @@
       }
     }
   },
-  "last_updated": "2026-03-23T17:16:53.085Z",
+  "last_updated": "2026-03-23T17:31:40.539Z",
   "history": [
     {
       "iteration": "000001",
@@ -86,5 +86,6 @@
       "archived_at": "2026-03-23T17:16:53.073Z",
       "archived_path": ".agents/flow/archived/000002"
     }
-  ]
+  ],
+  "updated_by": "nvst:approve-requirement"
 }

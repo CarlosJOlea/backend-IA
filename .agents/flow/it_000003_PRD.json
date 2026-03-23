@@ -1,0 +1,191 @@
+{
+  "goals": [
+    "Protect the API with token-based authentication (JWT).",
+    "Allow end users to self-register and manage their own session.",
+    "Enable token renewal without requiring re-login on every expiry.",
+    "Guarantee that logout immediately invalidates the session server-side."
+  ],
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "User Registration",
+      "description": "As an end user, I want to register with my email and password so that I can create an account and access the protected API.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-001-AC01",
+          "text": "`POST /auth/register` accepts `{ \"email\": \"...\", \"password\": \"...\" }`."
+        },
+        {
+          "id": "US-001-AC02",
+          "text": "Returns `201 Created` with `{ \"id\": ..., \"email\": \"...\" }` on success."
+        },
+        {
+          "id": "US-001-AC03",
+          "text": "Password is stored hashed with BCrypt — never in plain text."
+        },
+        {
+          "id": "US-001-AC04",
+          "text": "Returns `400 Bad Request` if email or password is missing or email format is invalid."
+        },
+        {
+          "id": "US-001-AC05",
+          "text": "Returns `409 Conflict` if the email is already registered."
+        },
+        {
+          "id": "US-001-AC06",
+          "text": "Typecheck / lint passes (`mvn clean install` succeeds)."
+        }
+      ]
+    },
+    {
+      "id": "US-002",
+      "title": "User Login",
+      "description": "As an end user, I want to log in with my email and password so that I receive an access token and a refresh token to authenticate subsequent requests.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-002-AC01",
+          "text": "`POST /auth/login` accepts `{ \"email\": \"...\", \"password\": \"...\" }`."
+        },
+        {
+          "id": "US-002-AC02",
+          "text": "Returns `200 OK` with `{ \"accessToken\": \"...\", \"refreshToken\": \"...\" }` on success."
+        },
+        {
+          "id": "US-002-AC03",
+          "text": "Access token is a signed JWT (JJWT) with a short expiration (see Open Questions)."
+        },
+        {
+          "id": "US-002-AC04",
+          "text": "Refresh token is persisted in the database linked to the user."
+        },
+        {
+          "id": "US-002-AC05",
+          "text": "Returns `401 Unauthorized` if credentials are invalid."
+        },
+        {
+          "id": "US-002-AC06",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    },
+    {
+      "id": "US-003",
+      "title": "Token Refresh",
+      "description": "As an end user, I want to exchange my refresh token for a new access token so that I can stay logged in without re-entering my credentials.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-003-AC01",
+          "text": "`POST /auth/refresh` accepts `{ \"refreshToken\": \"...\" }`."
+        },
+        {
+          "id": "US-003-AC02",
+          "text": "Returns `200 OK` with `{ \"accessToken\": \"...\" }` when the refresh token is valid and not expired."
+        },
+        {
+          "id": "US-003-AC03",
+          "text": "Returns `401 Unauthorized` if the refresh token is invalid, expired, or already invalidated."
+        },
+        {
+          "id": "US-003-AC04",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    },
+    {
+      "id": "US-004",
+      "title": "User Logout",
+      "description": "As an end user, I want to log out so that my session is immediately invalidated and the refresh token can no longer be used.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-004-AC01",
+          "text": "`POST /auth/logout` accepts `{ \"refreshToken\": \"...\" }` (or reads the token from a header)."
+        },
+        {
+          "id": "US-004-AC02",
+          "text": "Marks the refresh token as invalidated in the database."
+        },
+        {
+          "id": "US-004-AC03",
+          "text": "Returns `204 No Content` on success."
+        },
+        {
+          "id": "US-004-AC04",
+          "text": "A subsequent `POST /auth/refresh` with the same token returns `401 Unauthorized`."
+        },
+        {
+          "id": "US-004-AC05",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    },
+    {
+      "id": "US-005",
+      "title": "Protected Endpoint Enforcement",
+      "description": "As a developer, I want all non-auth endpoints to require a valid access token so that unauthenticated clients cannot access protected resources.",
+      "acceptanceCriteria": [
+        {
+          "id": "US-005-AC01",
+          "text": "Any request to a protected endpoint without an `Authorization: Bearer <token>` header returns `401 Unauthorized`."
+        },
+        {
+          "id": "US-005-AC02",
+          "text": "Any request with an expired or malformed access token returns `401 Unauthorized`."
+        },
+        {
+          "id": "US-005-AC03",
+          "text": "Requests with a valid access token are processed normally."
+        },
+        {
+          "id": "US-005-AC04",
+          "text": "Auth endpoints (`/auth/**`) remain publicly accessible (no token required)."
+        },
+        {
+          "id": "US-005-AC05",
+          "text": "Typecheck / lint passes."
+        }
+      ]
+    }
+  ],
+  "functionalRequirements": [
+    {
+      "id": "FR-1",
+      "description": "The system must expose `POST /auth/register` to create a new user with email and hashed password."
+    },
+    {
+      "id": "FR-2",
+      "description": "The system must expose `POST /auth/login` to validate credentials and issue a JWT access token and a persisted refresh token."
+    },
+    {
+      "id": "FR-3",
+      "description": "The system must expose `POST /auth/refresh` to exchange a valid refresh token for a new access token."
+    },
+    {
+      "id": "FR-4",
+      "description": "The system must expose `POST /auth/logout` to invalidate a refresh token in the database."
+    },
+    {
+      "id": "FR-5",
+      "description": "A Spring Security filter must validate the JWT on every request to non-public endpoints and return `401` on failure."
+    },
+    {
+      "id": "FR-6",
+      "description": "Passwords must be hashed with BCrypt via `PasswordEncoder`."
+    },
+    {
+      "id": "FR-7",
+      "description": "JWTs must be signed and verified using the JJWT library (`io.jsonwebtoken`)."
+    },
+    {
+      "id": "FR-8",
+      "description": "Refresh tokens must be stored in the H2 database (JPA entity) with at minimum: token value, user reference, expiration timestamp, and an `invalidated` flag."
+    },
+    {
+      "id": "FR-9",
+      "description": "The auth feature must follow the hexagonal vertical-slice structure: `auth/domain`, `auth/application`, `auth/infrastructure/web`, `auth/infrastructure/persistence`."
+    },
+    {
+      "id": "FR-10",
+      "description": "Spring Security must be configured via `SecurityFilterChain` bean (no `WebSecurityConfigurerAdapter`)."
+    }
+  ]
+}
